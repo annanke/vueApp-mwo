@@ -22,7 +22,7 @@ export default {
  }, */
   computed: {
     buttonLabelToDisplay() {
-      return this.buttonLabel || 'Zaloguj sie'
+      return this.buttonLabel || 'Wejdz'
       }
   },
   methods: {

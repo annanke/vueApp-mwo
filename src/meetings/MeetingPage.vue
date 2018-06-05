@@ -1,9 +1,12 @@
 <template>
     <div>
-        <button>Dodaj nowe spotkanie</button>
-        <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
-        <h3>Zaplanowane zajęcia</h3>
-        <meetings-list :meetings="meetings"></meetings-list>
+        <!--<button @click="reveal()">Dodaj nowe spotkanie</button> -->
+        <button v-on:click="addRequest=!addRequest">Dodaj nowe spotkanie</button>
+        <new-meeting-form @added="onNewMeeting($event)" v-if="addRequest"></new-meeting-form>
+        <p v-show="meetings[0]">Zaplanowane zajecia ({{meetings.length}})</p>
+        <p v-show="!meetings[0]">brak zaplanowanych spotkan</p>
+
+        <meetings-list :meetings="meetings" :email="email"></meetings-list>
     </div>
 </template>
 <script>
@@ -11,15 +14,21 @@
     import MeetingsList from "./MeetingsList"
 
     export default{
+        props: ["email"],
         components: {NewMeetingForm, MeetingsList},
         data(){
             return {
-                meetings:[]
+                addRequest: false,
+                meetings: []
             };
         },
         methods:{
-            addNewMeeting(meeting){
+            onNewMeeting(meeting){
                 this.meetings.push(meeting);
+                this.addRequest = false;
+            },
+            reveal(){
+                this.addRequest=true;
             }
         }
     }

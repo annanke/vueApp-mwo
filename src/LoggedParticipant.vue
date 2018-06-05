@@ -1,7 +1,7 @@
 <template>
    <div>
-      <h3>Witaj {{ email }} </h3> 
-      <button @click="logout()"> Wyloguj</button>  
+      <h3>Witaj {{ email }} !</h3> 
+      <button class="button-outline" @click="logout()"> Wyloguj</button>  
    </div>
 </template>
 
